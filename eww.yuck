@@ -1,0 +1,21 @@
+(defwindow bar
+  :monitor 0
+  :geometry (geometry 
+    :x "0"
+    :y "0"
+    :width "100%"
+    :anchor "top center"
+  )
+  :stacking "bg"
+  :exclusive true
+  (container
+    "THE BOX"
+  )
+)
+
+(defwidget container []
+  (box
+    :class "container"
+    (children)
+  )
+)
