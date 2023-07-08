@@ -1,0 +1,48 @@
+; (deflisten volume-level `wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F'.' '{print $2}'`)
+(defvar volume-level 0)
+
+(defwindow volume
+  :monitor 0
+  :geometry (geometry
+    :anchor "center center"
+  )
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  
+  (box
+    :class "container"
+    :orientation "v"
+    :spacing 30
+    :space-evenly false
+    (volume-icon
+      :path "assets/volume-high.svg"
+    )
+    (volume-progress
+      :level {volume-level}
+    )
+  )
+)
+
+(defwidget volume-icon [path]
+  (image
+    :class "volume-icon"
+    :path {path}
+    :image-width 100
+  )
+)
+
+(defwidget volume-progress [level]
+  (box
+    :class "volume-progress"
+    :halign "center"
+    :valign "end"
+    :width 200
+    :height 10
+    (box
+      :class "volume-value"
+      :halign "start"
+      :width {level}
+    )
+  )
+)
