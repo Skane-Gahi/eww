@@ -28,7 +28,7 @@
   (image
     :class "volume-icon"
     :path {path}
-    :image-width 100
+    :image-width 120
   )
 )
 
