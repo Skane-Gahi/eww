@@ -1,4 +1,4 @@
-(defwidget control-widget [path level]
+(defwidget control-widget [path value]
   (box
     :class "control-widget"
     :orientation "v"
@@ -7,7 +7,7 @@
     (control-icon
       :path {path})
     (control-slider
-      :level {level}
+      :value {value}
     )
   )
 )
@@ -20,7 +20,7 @@
   )
 )
 
-(defwidget control-slider [level]
+(defwidget control-slider [value]
   (box
     :class "control-slider"
     :halign "center"
@@ -30,7 +30,7 @@
     (box
       :class "control-value"
       :halign "start"
-      :width {level}
+      :width {value * 2}
     )
   )
 )
