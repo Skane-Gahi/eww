@@ -1,2 +1,3 @@
-(include "./windows/bar/bar.yuck")
-(include "./windows/volume.yuck")
+(include "windows/bar/bar.yuck")
+(include "windows/volume.yuck")
+(include "windows/brightness.yuck")

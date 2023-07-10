@@ -1,0 +1,19 @@
+(include "widgets/control.yuck")
+
+(defvar brightness-value 50)
+(defvar brightness-icon-path "assets/brightness.svg")
+
+(defwindow brightness-control
+  :monitor 0
+  :geometry (geometry
+    :anchor "center center"
+  )
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  
+  (control-widget
+    :path brightness-icon-path
+    :level brightness-value
+  )
+)
