@@ -1,0 +1,19 @@
+(include "widgets/control.yuck")
+
+(defvar volume-value 0)
+(defvar volume-icon-path "assets/volume-high.svg")
+
+(defwindow volume-control
+  :monitor 0
+  :geometry (geometry
+    :anchor "center center"
+  )
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  
+  (control-widget
+    :path volume-icon-path
+    :level volume-value
+  )
+)

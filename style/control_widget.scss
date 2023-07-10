@@ -1,0 +1,14 @@
+.control-widget {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(225, 225, 225, 0.5);
+    color: black;
+
+    .control-slider {
+        background-color: rgb(100, 100, 100);
+
+        .control-value {
+            background-color: white;
+        }
+    }
+}

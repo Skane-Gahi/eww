@@ -1,2 +1,2 @@
 (include "./windows/bar/bar.yuck")
-(include "./windows/volume/volume.yuck")
+(include "./windows/volume.yuck")

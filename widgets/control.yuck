@@ -1,0 +1,36 @@
+(defwidget control-widget [path level]
+  (box
+    :class "control-widget"
+    :orientation "v"
+    :spacing 30
+    :space-evenly false
+    (control-icon
+      :path {path})
+    (control-slider
+      :level {level}
+    )
+  )
+)
+
+(defwidget control-icon [path]
+  (image
+    :class "control-icon"
+    :path {path}
+    :image-width 120
+  )
+)
+
+(defwidget control-slider [level]
+  (box
+    :class "control-slider"
+    :halign "center"
+    :valign "end"
+    :width 200
+    :height 10
+    (box
+      :class "control-value"
+      :halign "start"
+      :width {level}
+    )
+  )
+)
