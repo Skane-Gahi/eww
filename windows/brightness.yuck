@@ -14,6 +14,6 @@
   
   (control-widget
     :path brightness-icon-path
-    :level brightness-value
+    :value brightness-value
   )
 )
