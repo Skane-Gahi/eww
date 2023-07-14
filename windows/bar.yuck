@@ -1,0 +1,48 @@
+(defwindow bar
+  :monitor 0
+  :geometry (geometry 
+    :height "100%"
+    :anchor "left center"
+  )
+  :stacking "fg"
+  :exclusive true
+  
+  (box
+    :class "container"
+    :orientation "v"
+    (box
+      :class "bottom-bar"
+      :valign "end"
+      :orientation "v"
+      :spacing 10
+      :space-evenly false
+      (circular-monitor
+        :type "ram"
+        :value {EWW_RAM.used_mem / EWW_RAM.total_mem * 100}
+      )
+      (circular-monitor
+        :type "cpu"
+        :value {EWW_CPU.avg}
+      )
+    )
+  )
+)
+
+(defwidget circular-monitor [type value]
+  (box
+    :class "circular-monitor"
+    (circular-progress
+      :class "outer-circle outer-${type}"
+      :value {value}
+      :start-at 25
+      :thickness 5
+      (box
+        :class "middle-circle middle-${type}"
+        (box
+          :class "inner-circle inner-${type}"
+          "Need text otherwise circular progress does not work"
+        )
+      )
+    )
+  )
+)

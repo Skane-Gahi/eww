@@ -1,12 +1,48 @@
 .bar {
-    color: black;
     font-weight: bold;
-    font-size: 18px;
+    color: black;
 
     .container {
-        background-color: white;
         margin: 5px;
-        padding: 5px;
+        padding: 15px 10px;
+        background-color: rgba(255, 255, 255, 1);
         border-radius: 10px;
+
+        .circular-monitor {
+            background-color: lightgrey;
+            border-radius: 100%;
+
+            .middle-circle {
+                padding: 10px;
+                border-radius: 100%;
+
+                .inner-circle {
+                    padding: 5px;
+                    font-size: 0;
+                    color: transparent;
+                    border-radius: 100%;
+                }
+            }
+
+            .outer-ram {
+                color: palevioletred;
+                .middle-ram {
+                    background-color: white;
+                }
+                .inner-ram {
+                    background-color: palevioletred;
+                }
+            }
+
+            .outer-cpu {
+                color: yellowgreen;
+                .middle-cpu {
+                    background-color: white;
+                }
+                .inner-cpu {
+                    background-color: yellowgreen;
+                }
+            }
+        }
     }
 }
