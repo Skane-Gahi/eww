@@ -1,6 +1,9 @@
 (defpoll hour :interval "1s" :initial "00" `date +%H`)
 (defpoll minute :interval "1s" :initial "00" `date +%M`)
 
+(deflisten workspaces :initial "[]" "bash scripts/get-workspaces.sh")
+(deflisten current_workspace :initial "1" "bash scripts/get-active-workspace.sh")
+
 (defwindow bar
   :monitor 0
   :geometry (geometry 
@@ -23,7 +26,37 @@
     :valign "start"
     :orientation "v"
     :space-evenly false
-    "top"
+    (image
+      :path "assets/arch-logo-dark.svg"
+      :image-width 25
+    )
+    "--"
+    (workspaces)
+  )
+)
+
+(defwidget workspaces []
+  (eventbox 
+    :class "workspaces-widget"
+    :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" 
+    (box 
+      :orientation "v"
+      :space-evenly true
+      (label 
+        :text "${workspaces}${current_workspace}" 
+        :visible false)
+      (for workspace in workspaces
+        (eventbox 
+          :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box 
+            :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label 
+              :text "${workspace.id}"
+            )
+          )
+        )
+      )
+    )
   )
 )
 
@@ -32,7 +65,7 @@
     :valign "center"
     :orientation "v"
     :space-evenly false
-    "ctr"
+    ">"
   )
 )
 
