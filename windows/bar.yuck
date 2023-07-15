@@ -1,3 +1,6 @@
+(defpoll hour :interval "1s" :initial "00" `date +%H`)
+(defpoll minute :interval "1s" :initial "00" `date +%M`)
+
 (defwindow bar
   :monitor 0
   :geometry (geometry 
@@ -6,24 +9,66 @@
   )
   :stacking "fg"
   :exclusive true
-  
-  (box
+  (centerbox
     :class "container"
     :orientation "v"
-    (box
-      :class "bottom-bar"
-      :valign "end"
-      :orientation "v"
-      :spacing 10
-      :space-evenly false
-      (circular-monitor
-        :type "ram"
-        :value {EWW_RAM.used_mem / EWW_RAM.total_mem * 100}
-      )
-      (circular-monitor
-        :type "cpu"
-        :value {EWW_CPU.avg}
-      )
+    (top-bar)
+    "ctr"
+    (bottom-bar)
+  )
+)
+
+(defwidget top-bar []
+  (box
+    :valign "start"
+    :orientation "v"
+    :space-evenly false
+    "top"
+  )
+)
+
+(defwidget center-bar []
+  (box
+    :valign "center"
+    :orientation "v"
+    :space-evenly false
+    "center"
+  )
+)
+
+(defwidget bottom-bar []
+  (box
+    :valign "end"
+    :orientation "v"
+    :space-evenly false
+    :spacing 20
+    (vertical-monitor)
+    (vertical-time)
+  )
+)
+
+(defwidget vertical-time []
+  (box
+   :class "vertical"
+   :orientation "v"
+   :space-evenly false
+   "${hour}"
+   "${minute}" 
+  )
+)
+
+(defwidget vertical-monitor []
+  (box
+    :orientation "v"
+    :spacing 10
+    :space-evenly false
+    (circular-monitor
+      :type "ram"
+      :value {EWW_RAM.used_mem / EWW_RAM.total_mem * 100}
+    )
+    (circular-monitor
+      :type "cpu"
+      :value {EWW_CPU.avg}
     )
   )
 )
