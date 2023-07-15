@@ -1,11 +1,11 @@
 .bar {
-    font-weight: bold;
-    color: black;
+    font-weight: bolder;
+    color: rgb(50, 50, 50);
 
     .container {
         margin: 5px;
         padding: 15px 10px;
-        background-color: rgba(255, 255, 255, 1);
+        background-color: rgb(255, 255, 255);
         border-radius: 10px;
 
         .circular-monitor {
@@ -42,6 +42,22 @@
                 .inner-cpu {
                     background-color: yellowgreen;
                 }
+            }
+        }
+
+        .battery-toping {
+            background-color: rgb(50, 50, 50);
+            border-radius: 2px 2px 0 0;
+        }
+        .outer-battery {
+            background-color: transparent;
+            border: 2px solid rgb(50, 50, 50);
+            border-radius: 3px;
+
+            .inner-battery {
+                margin: 1px;
+                background-color: rgb(50, 50, 50);
+                border-radius: 2px;
             }
         }
     }

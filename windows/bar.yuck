@@ -13,7 +13,7 @@
     :class "container"
     :orientation "v"
     (top-bar)
-    "ctr"
+    (center-bar)
     (bottom-bar)
   )
 )
@@ -32,7 +32,7 @@
     :valign "center"
     :orientation "v"
     :space-evenly false
-    "center"
+    "ctr"
   )
 )
 
@@ -41,8 +41,10 @@
     :valign "end"
     :orientation "v"
     :space-evenly false
-    :spacing 20
+    :spacing 10
     (vertical-monitor)
+    "--"
+    (battery :value {EWW_BATTERY.total_avg})
     (vertical-time)
   )
 )
@@ -53,7 +55,32 @@
    :orientation "v"
    :space-evenly false
    "${hour}"
-   "${minute}" 
+   "${minute}"
+  )
+)
+
+(defwidget battery [value]
+  (box
+    :spacing 0
+    :orientation "v"
+    :space-evenly false
+    (box
+      :class "battery-toping"
+      :halign "center"
+      :height 3
+      :width 10
+    )
+    (box
+      :class "outer-battery"
+      :halign "center"
+      :height 24
+      (box
+        :class "inner-battery"
+        :valign "end"
+        :height {round(value / 100 * 20, 0)}
+        :width 15
+      )
+    )
   )
 )
 
