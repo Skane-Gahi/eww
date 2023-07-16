@@ -1,8 +1,9 @@
+; Imports
+(include "widgets/workspaces.yuck")
+
+; Variables
 (defpoll hour :interval "1s" :initial "00" `date +%H`)
 (defpoll minute :interval "1s" :initial "00" `date +%M`)
-
-(deflisten workspaces :initial "[]" "bash scripts/get-workspaces.sh")
-(deflisten current_workspace :initial "1" "bash scripts/get-active-workspace.sh")
 
 (defwindow bar
   :monitor 0
@@ -32,31 +33,6 @@
     )
     "--"
     (workspaces)
-  )
-)
-
-(defwidget workspaces []
-  (eventbox 
-    :class "workspaces-widget"
-    :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" 
-    (box 
-      :orientation "v"
-      :space-evenly true
-      (label 
-        :text "${workspaces}${current_workspace}" 
-        :visible false)
-      (for workspace in workspaces
-        (eventbox 
-          :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (box 
-            :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
-            (label 
-              :text "${workspace.id}"
-            )
-          )
-        )
-      )
-    )
   )
 )
 
@@ -124,7 +100,7 @@
     :space-evenly false
     (circular-monitor
       :type "ram"
-      :value {EWW_RAM.used_mem / EWW_RAM.total_mem * 100}
+      :value {EWW_RAM.used_mem_perc}
     )
     (circular-monitor
       :type "cpu"

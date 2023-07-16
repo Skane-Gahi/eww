@@ -8,6 +8,19 @@
         background-color: rgb(255, 255, 255);
         border-radius: 10px;
 
+        .workspace {
+            border: 2px solid rgb(50, 50, 50);
+            border-radius: 100%;
+
+            .current, .occupied {
+                background-color: rgb(50, 50, 50);
+                border-radius: 100%;
+            }
+            .occupied:not(.current) {
+                margin: 5px;
+            }
+        }
+
         .circular-monitor {
             background-color: lightgrey;
             border-radius: 100%;

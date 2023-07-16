@@ -1,0 +1,29 @@
+; Variables
+(deflisten workspaces :initial "[]" "bash scripts/get-workspaces.sh 6")
+(deflisten current_workspace "bash scripts/get-active-workspace.sh")
+
+; Widgets
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :spacing 5
+    :orientation "v"
+    :space-evenly true
+
+    ; Following label is mandatory for variables to exist
+    (label :text "${workspaces}${current_workspace}" :visible false)
+
+    (for workspace in workspaces
+      (eventbox 
+        :class "workspace"
+        :halign "center"
+        :valign "start"
+        :height 15
+        :width 15
+        :onclick "hyprctl dispatch workspace ${workspace.id}"
+
+        (box :class "${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}")
+      )
+    )
+  )
+)
