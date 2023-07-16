@@ -1,5 +1,6 @@
-@import "./bar.scss";
-@import "./control_widget.scss";
+@import "./variables";
+@import "./bar";
+@import "./control_widget";
 
 * {
     all: unset;

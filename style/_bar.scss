@@ -1,20 +1,20 @@
 .bar {
     font-weight: bolder;
-    color: rgb(50, 50, 50);
+    color: $secondary;
 
     .container {
         margin: 5px;
         padding: 15px 10px;
-        background-color: rgb(255, 255, 255);
-        border-radius: 10px;
+        background-color: $primary;
+        border-radius: $radius-default;
 
         .workspace {
-            border: 2px solid rgb(50, 50, 50);
-            border-radius: 100%;
+            border: 2px solid $secondary;
+            border-radius: $radius-round;
 
             .current, .occupied {
-                background-color: rgb(50, 50, 50);
-                border-radius: 100%;
+                background-color: $secondary;
+                border-radius: $radius-round;
             }
             .occupied:not(.current) {
                 margin: 5px;
@@ -27,20 +27,20 @@
 
             .middle-circle {
                 padding: 10px;
-                border-radius: 100%;
+                border-radius: $radius-round;
 
                 .inner-circle {
                     padding: 5px;
                     font-size: 0;
                     color: transparent;
-                    border-radius: 100%;
+                    border-radius: $radius-round;
                 }
             }
 
             .outer-ram {
                 color: palevioletred;
                 .middle-ram {
-                    background-color: white;
+                    background-color: $primary;
                 }
                 .inner-ram {
                     background-color: palevioletred;
@@ -50,7 +50,7 @@
             .outer-cpu {
                 color: yellowgreen;
                 .middle-cpu {
-                    background-color: white;
+                    background-color: $primary;
                 }
                 .inner-cpu {
                     background-color: yellowgreen;
@@ -59,17 +59,17 @@
         }
 
         .battery-toping {
-            background-color: rgb(50, 50, 50);
+            background-color: $secondary;
             border-radius: 2px 2px 0 0;
         }
         .outer-battery {
             background-color: transparent;
-            border: 2px solid rgb(50, 50, 50);
+            border: 2px solid $secondary;
             border-radius: 3px;
 
             .inner-battery {
                 margin: 1px;
-                background-color: rgb(50, 50, 50);
+                background-color: $secondary;
                 border-radius: 2px;
             }
         }
