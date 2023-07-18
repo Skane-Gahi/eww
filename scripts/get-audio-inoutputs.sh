@@ -10,7 +10,7 @@ if [ "$1" == "i" ]; then
 fi
 
 # retrieve all pipewire as JSON
-pw-dump | 
+inoutputs=$(pw-dump | 
     # Extract only the Audio outputs/inputs
     jq -Mc --arg type "Audio/${type}" '
         .[] | 
@@ -19,3 +19,7 @@ pw-dump |
     '| 
     # Put results in an array
     jq -Mcs '.'
+)
+
+# Return result
+echo $inoutputs
