@@ -1,4 +1,5 @@
 .bar {
+    font-size: 16px;
     font-weight: bolder;
     color: $secondary;
 
@@ -64,11 +65,11 @@
         }
         .outer-battery {
             background-color: transparent;
-            border: 2px solid $secondary;
+            border-style: solid;
+            border-color: $secondary;
             border-radius: 3px;
 
             .inner-battery {
-                margin: 1px;
                 background-color: $secondary;
                 border-radius: 2px;
             }

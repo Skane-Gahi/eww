@@ -1,0 +1,9 @@
+(defwidget bar-time []
+  (box
+   :class "vertical"
+   :orientation "v"
+   :space-evenly false
+   "${hour}"
+   "${minute}"
+  )
+)

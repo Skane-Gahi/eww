@@ -1,0 +1,34 @@
+(defwidget bar-monitor []
+  (box
+    :orientation "v"
+    :spacing 10
+    :space-evenly false
+    (circular-monitor
+      :type "ram"
+      :value {EWW_RAM.used_mem_perc}
+    )
+    (circular-monitor
+      :type "cpu"
+      :value {EWW_CPU.avg}
+    )
+  )
+)
+
+(defwidget circular-monitor [type value]
+  (box
+    :class "circular-monitor"
+    (circular-progress
+      :class "outer-circle outer-${type}"
+      :value {value}
+      :start-at 25
+      :thickness 5
+      (box
+        :class "middle-circle middle-${type}"
+        (box
+          :class "inner-circle inner-${type}"
+          "Need text otherwise circular progress does not work"
+        )
+      )
+    )
+  )
+)

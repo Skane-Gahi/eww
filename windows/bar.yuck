@@ -1,5 +1,8 @@
 ; Imports
 (include "widgets/workspaces.yuck")
+(include "widgets/bar-monitor.yuck")
+(include "widgets/bar-time.yuck")
+(include "widgets/bar-battery.yuck")
 
 ; Variables
 (defpoll hour :interval "1s" :initial "00" `date +%H`)
@@ -41,7 +44,8 @@
     :valign "center"
     :orientation "v"
     :space-evenly false
-    ">"
+    "ctr"
+    "ntf"
   )
 )
 
@@ -51,79 +55,10 @@
     :orientation "v"
     :space-evenly false
     :spacing 10
-    (vertical-monitor)
+    (bar-monitor)
     "--"
-    (battery :value {EWW_BATTERY.total_avg})
-    (vertical-time)
+    (bar-battery :value {EWW_BATTERY.total_avg})
+    (bar-time)
   )
 )
 
-(defwidget vertical-time []
-  (box
-   :class "vertical"
-   :orientation "v"
-   :space-evenly false
-   "${hour}"
-   "${minute}"
-  )
-)
-
-(defwidget battery [value]
-  (box
-    :spacing 0
-    :orientation "v"
-    :space-evenly false
-    (box
-      :class "battery-toping"
-      :halign "center"
-      :height 3
-      :width 10
-    )
-    (box
-      :class "outer-battery"
-      :halign "center"
-      :height 24
-      (box
-        :class "inner-battery"
-        :valign "end"
-        :height {round(value / 100 * 20, 0)}
-        :width 15
-      )
-    )
-  )
-)
-
-(defwidget vertical-monitor []
-  (box
-    :orientation "v"
-    :spacing 10
-    :space-evenly false
-    (circular-monitor
-      :type "ram"
-      :value {EWW_RAM.used_mem_perc}
-    )
-    (circular-monitor
-      :type "cpu"
-      :value {EWW_CPU.avg}
-    )
-  )
-)
-
-(defwidget circular-monitor [type value]
-  (box
-    :class "circular-monitor"
-    (circular-progress
-      :class "outer-circle outer-${type}"
-      :value {value}
-      :start-at 25
-      :thickness 5
-      (box
-        :class "middle-circle middle-${type}"
-        (box
-          :class "inner-circle inner-${type}"
-          "Need text otherwise circular progress does not work"
-        )
-      )
-    )
-  )
-)
