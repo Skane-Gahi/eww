@@ -4,11 +4,12 @@
 (defwidget bar-monitor []
   (box
     :orientation "v"
-    :spacing 5
+    :spacing 10
     (circular-monitor
       :value {EWW_RAM.used_mem_perc}
       :icon-path {ram-icon-path}
     )
+    "--"
     (circular-monitor
       :value {EWW_CPU.avg}
       :icon-path {cpu-icon-path}
@@ -20,7 +21,7 @@
   (box
     :class "circular-monitor"
     :orientation "v"
-    :spacing 10
+    :spacing 0
     (circular-progress
       :class "circle"
       :halign "center"
@@ -30,10 +31,6 @@
       :value {value}
       :start-at 25
       :thickness 5
-    )
-    (image
-      :path {icon-path}
-      :image-width 24
     )
   )
 )

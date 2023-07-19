@@ -45,14 +45,7 @@
     :orientation "v"
     :spacing 10
     :space-evenly false
-    (image
-      :path "assets/notifications.svg"
-      :image-width 25
-    )
-    (image
-      :path "assets/settings.svg"
-      :image-width 25
-    )
+    (bar-monitor)
   )
 )
 
@@ -62,7 +55,14 @@
     :orientation "v"
     :space-evenly false
     :spacing 10
-    (bar-monitor)
+    (image
+      :path "assets/notifications.svg"
+      :image-width 25
+    )
+    (image
+      :path "assets/settings.svg"
+      :image-width 25
+    )
     "--"
     (bar-battery :value {EWW_BATTERY.total_avg})
     (bar-time)

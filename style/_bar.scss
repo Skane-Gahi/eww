@@ -23,19 +23,15 @@
         }
 
         .circular-monitor {
-            padding: 10px 5px;
-            background-color: $secondary;
-            border-radius: 10px;
-
             .circle {
-                background-color: rgba(255,255,255, 0.1);
-                color: $primary;
+                background-color: rgba(50, 50, 50, 0.2);
+                color: $secondary;
             }
         }
 
         .battery-toping {
+            margin-bottom: 2px;
             background-color: $secondary;
-            border-radius: 2px 2px 0px 0px;
         }
         .outer-battery {
             background-color: transparent;
@@ -45,7 +41,7 @@
 
             .inner-battery {
                 background-color: $secondary;
-                border-radius: 2px;
+                border-radius: 0px;
             }
         }
     }
