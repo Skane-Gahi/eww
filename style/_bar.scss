@@ -23,45 +23,19 @@
         }
 
         .circular-monitor {
-            background-color: lightgrey;
-            border-radius: 100%;
+            padding: 10px 5px;
+            background-color: $secondary;
+            border-radius: 10px;
 
-            .middle-circle {
-                padding: 10px;
-                border-radius: $radius-round;
-
-                .inner-circle {
-                    padding: 5px;
-                    font-size: 0;
-                    color: transparent;
-                    border-radius: $radius-round;
-                }
-            }
-
-            .outer-ram {
-                color: palevioletred;
-                .middle-ram {
-                    background-color: $primary;
-                }
-                .inner-ram {
-                    background-color: palevioletred;
-                }
-            }
-
-            .outer-cpu {
-                color: yellowgreen;
-                .middle-cpu {
-                    background-color: $primary;
-                }
-                .inner-cpu {
-                    background-color: yellowgreen;
-                }
+            .circle {
+                background-color: rgba(255,255,255, 0.1);
+                color: $primary;
             }
         }
 
         .battery-toping {
             background-color: $secondary;
-            border-radius: 2px 2px 0 0;
+            border-radius: 2px 2px 0px 0px;
         }
         .outer-battery {
             background-color: transparent;

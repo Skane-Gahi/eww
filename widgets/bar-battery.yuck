@@ -1,4 +1,4 @@
-(defvar bar-battery-height 30)
+(defvar bar-battery-height 25)
 (defvar bar-battery-padding 1)
 (defvar bar-battery-border-size 2)
 
@@ -20,13 +20,13 @@
       :height {bar-battery-height + (bar-battery-border-size * 2)}
       :style "
         border-width: ${bar-battery-border-size}px;
-        padding:${bar-battery-padding};
+        padding:${bar-battery-padding}px;
       "
       (box
         :class "inner-battery"
         :valign "end"
         :height {round(value / 100 * (bar-battery-height - bar-battery-padding), 0)}
-        :width 20
+        :width 15
       )
     )
   )

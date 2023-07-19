@@ -43,9 +43,16 @@
   (box
     :valign "center"
     :orientation "v"
+    :spacing 10
     :space-evenly false
-    "ctr"
-    "ntf"
+    (image
+      :path "assets/notifications.svg"
+      :image-width 25
+    )
+    (image
+      :path "assets/settings.svg"
+      :image-width 25
+    )
   )
 )
 

@@ -1,34 +1,39 @@
+(defvar ram-icon-path "assets/ram.svg")
+(defvar cpu-icon-path "assets/cpu.svg")
+
 (defwidget bar-monitor []
   (box
     :orientation "v"
-    :spacing 10
-    :space-evenly false
+    :spacing 5
     (circular-monitor
-      :type "ram"
       :value {EWW_RAM.used_mem_perc}
+      :icon-path {ram-icon-path}
     )
     (circular-monitor
-      :type "cpu"
       :value {EWW_CPU.avg}
+      :icon-path {cpu-icon-path}
     )
   )
 )
 
-(defwidget circular-monitor [type value]
+(defwidget circular-monitor [value icon-path]
   (box
     :class "circular-monitor"
+    :orientation "v"
+    :spacing 10
     (circular-progress
-      :class "outer-circle outer-${type}"
+      :class "circle"
+      :halign "center"
+      :valign "center"
+      :height 20
+      :width 20
       :value {value}
       :start-at 25
       :thickness 5
-      (box
-        :class "middle-circle middle-${type}"
-        (box
-          :class "inner-circle inner-${type}"
-          "Need text otherwise circular progress does not work"
-        )
-      )
+    )
+    (image
+      :path {icon-path}
+      :image-width 24
     )
   )
 )
