@@ -1,0 +1,34 @@
+{
+    "monitor_items": [
+        {
+            "value": "${EWW_CPU.avg}",
+            "icon": "assets/cpu.svg"
+        },
+        {
+            "value": "${EWW_CPU.avg}",
+            "icon": "assets/ram.svg"
+        },
+        {
+            "value": "${EWW_CPU.avg}",
+            "icon": "assets/disk.svg"
+        }
+    ],
+    "power_items": [
+        {
+            "cmd": "", 
+            "icon": "assets/lock.svg" 
+        },
+        {
+            "cmd": "hyprctl dispatch exit",
+            "icon": "assets/exit.svg" 
+        },
+        {
+            "cmd": "reboot",
+            "icon": "assets/reboot.svg" 
+        },
+        {
+            "cmd": "shutdown now",
+            "icon": "assets/shutdown.svg" 
+        }
+    ]
+}

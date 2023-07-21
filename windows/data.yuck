@@ -1,0 +1,12 @@
+(defpoll data :interval "99s" :run-while false `cat /home/td/.config/eww/data.json | jq`)
+
+(defwindow data
+  :monitor 0
+  :geometry (geometry 
+    :height "0%"
+    :width "0%"
+  )
+  :stacking "bottom"
+  :exclusive false
+  (label :text "${data}" :visible false)
+)
