@@ -1,13 +1,14 @@
 ; Imports
-(include "widgets/workspaces.yuck")
-(include "widgets/bar-monitor.yuck")
-(include "widgets/bar-time.yuck")
-(include "widgets/bar-battery.yuck")
+(include "widgets/bar/workspaces.yuck")
+(include "widgets/bar/monitoring.yuck")
+(include "widgets/bar/time.yuck")
+(include "widgets/bar/battery.yuck")
 
 ; Variables
 (defpoll hour :interval "1s" :initial "00" `date +%H`)
 (defpoll minute :interval "1s" :initial "00" `date +%M`)
 
+; Window
 (defwindow bar
   :monitor 0
   :geometry (geometry 
@@ -45,7 +46,7 @@
     :orientation "v"
     :spacing 10
     :space-evenly false
-    (bar-monitor)
+    (bar-monitoring)
   )
 )
 
@@ -55,13 +56,19 @@
     :orientation "v"
     :space-evenly false
     :spacing 10
-    (image
-      :path "assets/notifications.svg"
-      :image-width 25
+    (button
+      :onclick "eww close bar && eww open control-center"
+      (image
+        :path "assets/notifications.svg"
+        :image-width 25
+      )
     )
-    (image
-      :path "assets/settings.svg"
-      :image-width 25
+    (button
+      :onclick "eww close bar && eww open control-center"
+      (image
+        :path "assets/settings.svg"
+        :image-width 25
+      )
     )
     "--"
     (bar-battery :value {EWW_BATTERY.total_avg})

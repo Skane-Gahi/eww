@@ -1,7 +1,7 @@
 (defvar ram-icon-path "assets/ram.svg")
 (defvar cpu-icon-path "assets/cpu.svg")
 
-(defwidget bar-monitor []
+(defwidget bar-monitoring []
   (box
     :orientation "v"
     :spacing 10
