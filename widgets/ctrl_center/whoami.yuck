@@ -1,0 +1,14 @@
+(defwidget control-center-whoami []
+  (box
+    :class "control-item"
+    :vexpand true
+    :orientation "v"
+    :spacing 20
+    :space-evenly false
+    (image 
+      :path "assets/whoami.png"
+      :image-height 200
+    )
+    (label :text "${whoami}")
+  )
+)
