@@ -1,0 +1,95 @@
+(defwidget ctrl-center-monitoring []
+  (box
+    :class "control-item"
+    :orientation "v"
+    :spacing 10
+    (box
+      :orientation "h"
+      :spacing 10
+      :space-evenly false
+      (image
+        :valign "center"
+        :path "assets/battery.svg"
+        :image-height 25
+      )
+      (box
+        :class "outer-progress"
+        :valign "center"
+        :width 204
+        :height 20
+        (box
+          :class "inner-progress"
+          :halign "start"
+          :valign "baseline"
+          :width  {round(EWW_BATTERY.total_avg, 0) * 2}
+        )
+      )
+    )
+    (box
+      :orientation "h"
+      :spacing 10
+      :space-evenly false
+      (image
+        :valign "center"
+        :path "assets/disk.svg"
+        :image-height 25
+      )
+      (box
+        :class "outer-progress"
+        :valign "center"
+        :width 204
+        :height 20
+        (box
+          :class "inner-progress"
+          :halign "start"
+          :valign "baseline"
+          :width  {round(EWW_DISK["/"].used_perc, 0) * 2}
+        )
+      )
+    )
+    (box
+      :orientation "h"
+      :spacing 10
+      :space-evenly false
+      (image
+        :valign "center"
+        :path "assets/ram.svg"
+        :image-height 25
+      )
+      (box
+        :class "outer-progress"
+        :valign "center"
+        :width 204
+        :height 20
+        (box
+          :class "inner-progress"
+          :halign "start"
+          :valign "baseline"
+          :width  {round(EWW_RAM.used_mem_perc, 0) * 2}
+        )
+      )
+    )
+    (box
+      :orientation "h"
+      :spacing 10
+      :space-evenly false
+      (image
+        :valign "center"
+        :path "assets/cpu.svg"
+        :image-height 25
+      )
+      (box
+        :class "outer-progress"
+        :valign "center"
+        :width 204
+        :height 20
+        (box
+          :class "inner-progress"
+          :halign "start"
+          :valign "baseline"
+          :width  {round(EWW_CPU.avg, 0) * 2}
+        )
+      )
+    )
+  )
+)
