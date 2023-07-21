@@ -1,0 +1,63 @@
+; Imports
+(include "widgets/ctrl_center/whoami.yuck")
+(include "widgets/ctrl_center/monitoring.yuck")
+(include "widgets/ctrl_center/system.yuck")
+(include "widgets/ctrl_center/player.yuck")
+(include "widgets/ctrl_center/power.yuck")
+
+; Variables
+(defpoll whoami :interval "99s" :run-while false `whoami | tr '[:lower:]' '[:upper:]'`)
+
+; Window
+(defwindow control-center
+  :monitor 0
+  :geometry (geometry
+    :height "100%"
+    :width "100%"
+    :anchor "center center"
+  )
+  :stacking "overlay"
+  :exclusive true
+  (eventbox
+    :class "blur-container"
+    :valign "baseline"
+    :halign "baseline"
+    :vexpand true
+    :hexpand true
+    :onclick "eww close control-center && eww open bar"
+    (box
+      :class "container"
+      :valign "center"
+      :halign "center"
+      :orientation "h"
+      :spacing 10
+      :space-evenly false
+      (ctrl-left)
+      (ctrl-middle)
+      (ctrl-power)
+    )
+  )
+)
+
+; Widgets
+(defwidget ctrl-left []
+  (box
+    :orientation "v"
+    :spacing 10
+    :space-evenly false
+    (control-center-whoami)
+    (ctrl-center-monitoring)
+  )
+)
+
+(defwidget ctrl-middle []
+  (box
+    :orientation "v"
+    :spacing 10
+    :space-evenly false
+    (ctrl-system)
+    (ctrl-player)
+  )
+)
+
+

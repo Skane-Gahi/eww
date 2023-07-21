@@ -1,3 +1,5 @@
+(include "windows/data.yuck")
 (include "windows/bar.yuck")
 (include "windows/volume.yuck")
 (include "windows/brightness.yuck")
+(include "windows/control_center.yuck")
