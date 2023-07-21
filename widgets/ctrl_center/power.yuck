@@ -1,0 +1,24 @@
+
+(defwidget ctrl-power-button [cmd icon-path]
+  (button
+    :class "control-item"
+    :onclick {cmd}
+    (image
+      :path {icon-path}
+      :image-height 50
+    )
+  )
+)
+
+(defwidget ctrl-power []
+  (box
+    :orientation "v"
+    :spacing 10
+    (for item in {data.power_items}
+      (ctrl-power-button
+        :cmd {item.cmd}
+        :icon-path {item.icon}
+      )
+    )
+  )
+)
