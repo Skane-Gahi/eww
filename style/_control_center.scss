@@ -1,0 +1,38 @@
+.control-center {
+    font-weight: bolder;
+    color: $secondary;
+
+    .blur-container {
+        background-color: rgba(50, 50, 50, 0.1);
+
+        .container {
+            background-color: transparent;
+
+            .control-item {
+                padding: 20px;
+                background-color: $primary;
+                border-radius: $radius-default;
+
+                .outer-progress {
+                    padding: 2px;
+                    background-color: $secondary;
+
+                    .inner-progress {
+                        background-color: $primary;
+                    }
+                }
+
+                .icon-container {
+                    padding: 10px;
+                    border: 2px solid $secondary;
+                    border-radius: $radius-round;
+
+                    &.active {
+                        background-color: $secondary;
+                    }
+                }
+
+            }
+        }
+    }
+}
