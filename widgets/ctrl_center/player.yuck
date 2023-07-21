@@ -1,0 +1,10 @@
+(defwidget ctrl-player []
+  (box
+    :class "control-item"
+    :vexpand true
+    :hexpand true
+    :valign "fill"
+    :halign "baseline"
+    "PLAYER CTL"
+  ) 
+)

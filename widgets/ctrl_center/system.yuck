@@ -1,0 +1,94 @@
+; Variables
+(defpoll is-wifi :interval "1s" `sh scripts/wifi/is_active.sh`)
+(defpoll active-wifi 
+  :interval "1s" 
+  :initial "Not connected" 
+  :run-while is-wifi 
+  `sh scripts/wifi/get_active.sh`
+)
+
+; Widgets
+(defwidget ctrl-system []
+  (box
+    :hexpand true
+    :vexpand true
+    :orientation "h"
+    :spacing 10
+    :space-evenly false
+    (box
+      :orientation "v"
+      :spacing 10
+      :space-evenly false
+      (box
+        :class "control-item"
+        :hexpand false
+        :spacing 20
+        :space-evenly false
+        (box
+          :class "icon-container ${is-wifi ? 'active' : ''}"
+          :halign "end"
+          :valign "center"
+          (image
+            :path "assets/wifi-${is-wifi ? 'light' : 'dark'}.svg"
+            :image-height 30
+            :image-width 30
+          )
+        )
+        (label 
+          :text "${is-wifi ? active-wifi : 'WIFI OFF'}"
+        )
+        (image
+          :path "assets/caret-down.svg"
+          :image-width 20 
+        )
+      )
+      (box
+        :class "control-item"
+        :spacing 20
+        :space-evenly false
+        (box
+          :class "icon-container ${is-wifi ? 'active' : ''}"
+          (image
+            :path "assets/bluetooth-${is-wifi ? 'light' : 'dark'}.svg"
+            :image-height 30
+            :image-width 30
+          )
+        )
+        (label 
+          :text "Livebox-1090"
+        )
+        (image
+          :path "assets/caret-down.svg"
+          :image-width 20 
+        )
+      )
+    )
+    (box
+      :orientation "v"
+      :spacing 10
+      :space-evenly false
+      (box
+        :class "control-item"
+        (box
+          :class "icon-container ${is-wifi ? 'active' : ''}"
+          (image
+            :path "assets/disturb-${is-wifi ? 'light' : 'dark'}.svg"
+            :image-height 30
+            :image-width 30
+          )
+        )
+      )
+      (box
+        :class "control-item"
+        (box
+          :class "icon-container ${is-wifi ? 'active' : ''}"
+          (image
+            :path "assets/switcher-${is-wifi ? 'light' : 'dark'}.svg"
+            :image-height 30
+            :image-width 30
+          )
+        )
+      )
+    )
+  ) 
+)
