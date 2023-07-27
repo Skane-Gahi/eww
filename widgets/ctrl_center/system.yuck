@@ -1,10 +1,10 @@
 ; Variables
 (defpoll is-wifi :interval "1s" `sh scripts/wifi/is_active.sh`)
-(defpoll active-wifi 
+(defpoll connected-wifi 
   :interval "1s" 
   :initial "Not connected" 
   :run-while is-wifi 
-  `sh scripts/wifi/get_active.sh`
+  `sh scripts/wifi/get_connected.sh`
 )
 
 ; Widgets
@@ -19,76 +19,69 @@
       :orientation "v"
       :spacing 10
       :space-evenly false
-      (box
-        :class "control-item"
-        :hexpand false
-        :spacing 20
-        :space-evenly false
-        (box
-          :class "icon-container ${is-wifi ? 'active' : ''}"
-          :halign "end"
-          :valign "center"
-          (image
-            :path "assets/wifi-${is-wifi ? 'light' : 'dark'}.svg"
-            :image-height 30
-            :image-width 30
-          )
-        )
-        (label 
-          :text "${is-wifi ? active-wifi : 'WIFI OFF'}"
-        )
-        (image
-          :path "assets/caret-down.svg"
-          :image-width 20 
-        )
+      (ctrl-system-full
+        :connectivity "wifi"
+        :is-active {is-wifi}
+        :connected-device {connected-wifi}
       )
-      (box
-        :class "control-item"
-        :spacing 20
-        :space-evenly false
-        (box
-          :class "icon-container ${is-wifi ? 'active' : ''}"
-          (image
-            :path "assets/bluetooth-${is-wifi ? 'light' : 'dark'}.svg"
-            :image-height 30
-            :image-width 30
-          )
-        )
-        (label 
-          :text "Livebox-1090"
-        )
-        (image
-          :path "assets/caret-down.svg"
-          :image-width 20 
-        )
+      (ctrl-system-full 
+        :connectivity "bluetooth"
+        :is-active {is-wifi}
+        :connected-device {connected-wifi}
       )
     )
     (box
       :orientation "v"
       :spacing 10
       :space-evenly false
-      (box
-        :class "control-item"
-        (box
-          :class "icon-container ${is-wifi ? 'active' : ''}"
-          (image
-            :path "assets/disturb-${is-wifi ? 'light' : 'dark'}.svg"
-            :image-height 30
-            :image-width 30
-          )
-        )
+      (ctrl-system-small
+        :type "disturb"
+        :is-active {is-wifi}
       )
-      (box
-        :class "control-item"
-        (box
-          :class "icon-container ${is-wifi ? 'active' : ''}"
-          (image
-            :path "assets/switcher-${is-wifi ? 'light' : 'dark'}.svg"
-            :image-height 30
-            :image-width 30
-          )
-        )
+      (ctrl-system-small
+        :type "switcher"
+        :is-active {is-wifi}
       )
     )
   ) 
+)
+
+(defwidget ctrl-system-full [connectivity is-active connected-device]
+  (box
+    :class "control-item"
+    :hexpand false
+    :spacing 20
+    :space-evenly false
+    (box
+      :class "icon-container ${is-active ? 'active' : ''}"
+      :halign "end"
+      :valign "center"
+      (image
+        :path "assets/${connectivity}-${is-wifi ? 'light' : 'dark'}.svg"
+        :image-height 30
+        :image-width 30
+      )
+    )
+    (label 
+      :text "${is-active ? connected-device : 'connectivity OFF'}"
+    )
+    (image
+      :path "assets/caret-down.svg"
+      :image-width 20 
+    )
+  )
+)
+
+(defwidget ctrl-system-small [type is-active]
+  (box
+    :class "control-item"
+    (box
+      :class "icon-container ${is-active ? 'active' : ''}"
+      (image
+        :path "assets/${type}-${is-active ? 'light' : 'dark'}.svg"
+        :image-height 30
+        :image-width 30
+      )
+    )
+  )
 )
