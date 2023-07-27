@@ -1,18 +1,25 @@
-#!/usr/bin/expect -f
+#!/bin/bash
+set -e
 
-set DEV [lindex $argv 0]
+device="$1"
 
-set timeout 5
+coproc bt { bluetoothctl ; }
 
-spawn bluetoothctl
-expect "Agent registered"
+expect () {
+    while read -r line; do
+        echo $line
+        if [[ "$line" == *"$1"* ]]; then
+            return 0
+        fi
+    done <&"${bt[0]}"
+}
 
-send "pair ${DEV}\n"
-expect "Request confirmation"
+timeout 3 cat <( expect "Agent registered" )
 
-send "yes\n"
-expect "Pairing successful"
+echo -e "pair ${device}\n" >&"${bt[1]}"
+timeout 10 cat <( expect "Request confirmation" )
 
-exit
+echo -e "yes\n" >&"${bt[1]}"
+timeout 5 cat <( expect "Pairing successful" )
 
-
+exit 0
